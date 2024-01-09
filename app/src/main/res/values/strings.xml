@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">StarbucksApp2</string>
+    <string name="address">Address</string>
+    <string name="distance">Distance</string>
+    <string name="latlong">LatLong</string>
+    <string name="API_KEY">AIzaSyAKM48qhFYT_HGYApAkUh0c9igpcezjYhw</string>
+</resources>

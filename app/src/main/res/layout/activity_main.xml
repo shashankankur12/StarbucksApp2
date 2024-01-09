@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.starbucksapp2.viewModel.MainViewModel" />
+
+        <variable
+            name="adapter"
+            type="com.example.starbucksapp2.adaptor.RestaurantAdaptor" />
+
+        <import type="android.view.View" />
+
+        <import type="com.example.starbucksapp2.comman.Resource" />
+
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableLayout
+            android:id="@+id/tableHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/table_bg"
+            android:paddingHorizontal="2dp"
+            android:paddingVertical="10dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TableRow>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text_view_address"
+                    style="@style/table_header"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_weight="1"
+                    android:text="@string/address" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text_view_distance"
+                    style="@style/table_header"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_weight=".4"
+                    android:text="@string/distance" />
+            </TableRow>
+        </TableLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tableHeader"
+            app:setAdapter="@{adapter}"
+            app:submitList="@{viewModel.resultList.data}"
+            tools:listitem="@layout/item_restaurant" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{safeUnbox(viewModel.resultList.status==Resource.Status.LOADING) ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

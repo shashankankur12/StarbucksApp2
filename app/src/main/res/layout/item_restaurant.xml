@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="restaurant"
+            type="com.example.starbucksapp2.model.StoreModel" />
+
+        <variable
+            name="listener"
+            type="com.example.starbucksapp2.adaptor.RestaurantListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> listener.onRestaurantClicked(restaurant)}">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/table_bg">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text_view_address"
+                    style="@style/table_row_item"
+                    android:layout_width="0dp"
+                    android:layout_column="0"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:text="@{restaurant.getCompleteAddress()}" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text_view_distance"
+                    style="@style/table_row_item"
+                    android:layout_width="0dp"
+                    android:layout_column="1"
+                    android:layout_margin="1dp"
+                    android:layout_weight=".4"
+                    android:background="@color/white"
+                    android:text="@{String.valueOf(restaurant.distance)+` km`}" />
+
+            </TableRow>
+        </TableLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
